@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div style="background:transparent !important" class="col col-9 jumbotron font-weight-lighter">
+        <h3 class="text-center ">Create New Member</h3>
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="col col-4">
+<img id='img-upload' style="width: 100%" /></div>
+            <div class="form-group text-center">
+                <input class="btn btn-primary" type="submit" value="Register"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+$(document).ready( function() {
+        $(document).on('change', '.clearablefileinput :file', function() {
+        var input = $(this),
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [label]);
+        });
+
+        $('.clearablefileinput :file').on('fileselect', function(event, label) {
+            
+            var input = $(this).parents('.input-group').find(':text'),
+                log = label;
+            
+            if( input.length ) {
+                input.val(log);
+            } else {
+                if( log ) alert(log);
+            }
+        
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function (e) {
+                    $('#img-upload').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#id_pic").change(function(){
+            readURL(this);
+        });     
+    });
+</script>
+{% endblock content %}

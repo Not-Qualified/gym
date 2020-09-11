@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3 class="text-center ">Members</h3><br/>
+<div class="row">
+    {% for member in object_list %}
+    <div class="col col-md-6 col-lg-4 col-sm-6" style="display: flex; justify-content: center; align-items: center;">
+        <div class="card-deck">
+            <div class="card border-success mb-5" style="width: 18rem;">
+                <div style="width: 18rem; height: 180px; display: flex; justify-content: center; align-items: center;">
+                    <img class="card-img-top" src="{{ member.pic.url }}"
+                         style="align-self: center; width: {{ member.pic.width }}px; height: {{ member.pic.height }}px;"
+                         alt="Card image cap"/>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'member-detail' member.pk %} "><h5 class="card-title">{{ member.first_name }} {{ member.last_name }}</h5></a>
+                    <p class="card-text">
+                        {{ member.mobile_one }}<br/>
+                        Joined on : {{ member.date_joined.date }}
+                    </p>
+                    <a href="#" class="btn btn-primary">Link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

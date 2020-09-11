@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div style="background:transparent !important" class="col col-9 jumbotron font-weight-lighter">
+        <h3 class="text-center ">Create New Trainer</h3>
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <div class="form-group text-center">
+                <input class="btn btn-primary" type="submit" value="Create"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

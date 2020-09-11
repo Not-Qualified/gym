@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col col-md-6 col-sm-6 col-lg-4">
+
+
+        <div class="card" style="width: 18rem;">
+        <h3 class="text-center">{{ object.first_name }} {{ object.last_name }}</h3><br/>
+            <img src="{{ object.pic.url }}"
+                 style="align-self: center; width: {{ object.pic.width }}px; height: {{ object.pic.height }}px;"
+                 class="card-img" alt="Can't Load Image, Upload New One">
+
+
+
+            <div class="card-body">
+                <h5 class="card-title">{{ object.first_name }} {{ object.last_name }}</h5>
+                <p class="card-text">---------------</p>
+            </div>
+
+            <ul class="list-group list-group-flush">
+
+                {% if object.sex == "f" %}
+                    <li class="list-group-item">FeMale
+                {% else %}
+                    <li class="list-group-item">MaLe
+                {% endif %}
+                <br/>
+                <small class="text-muted">Gender</small>
+                </li>
+
+                {% if object.mobile_one %}
+                <li class="list-group-item">
+                    {{ object.mobile_one }}<br/>
+                    <small class="text-muted">Primary Contact</small>
+                </li>
+                {% endif %}
+
+                {% if object.mobile_two %}
+                <li class="list-group-item">
+                    {{ object.mobile_two }}<br/>
+                    <small class="text-muted">Secondary Contact</small>
+                </li>
+                {% endif %}
+
+                {% if object.email %}
+                <li class="list-group-item">
+                    {{ object.email }}<br/>
+                    <small class="text-muted">EMail Address</small>
+                </li>
+                {% endif %}
+
+                {% if object.profession %}
+                <li class="list-group-item">
+                    {{ object.profession }}<br/>
+                    <small class="text-muted">: Profession</small>
+                </li>
+                {% endif %}
+
+                {% if object.address %}
+                <li class="list-group-item">
+                    {{ object.address }}<br/>
+                    <small class="text-muted">: Address</small>
+                </li>
+                {% endif %}
+
+                {% if object.dob %}
+                <li class="list-group-item">
+                    {{ object.dob }}<br/>
+                    <small class="text-muted">: Date of Birth</small>
+                </li>
+                {% endif %}
+
+                {% if object.marriage %}
+                <li class="list-group-item">
+                    {{ object.marriage }}<br/>
+                    <small class="text-muted">: Marriage Anniversary</small>
+                </li>
+                {% endif %}
+
+                {% if object.date_joined %}
+                <li class="list-group-item">
+                    {{ object.date_joined|date }}<br/>
+                    <small class="text-muted">: Joined on</small>
+                </li>
+                {% endif %}
+
+            </ul>
+
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock content %}
